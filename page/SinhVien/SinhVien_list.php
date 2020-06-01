@@ -26,20 +26,27 @@ include ("SinhVien_data.php");
 <body>
     <div class="container">
         <h3 align="center">DANH SACH NGUOI DUNG</h3>
-        <a href="category_add.php" type="button" class="btn btn-primary">Thêm mới</a>
+        <a href="SinhVien_add.php" type="button" class="btn btn-primary">Thêm mới</a>
 
         <!--    
     <div class="alert alert-success">
       <strong>Thành công! </strong> Thông báo 
     </div> -->
 
+        <?php
+        if(isset($_COOKIE['msg'])) { 
+        ?>
+        <div class="alert alert-success">
+            <?=$_COOKIE['msg']?>
+        </div>
+        <?php } ?>
         <hr>
         <table class="table">
             <thead>
                 <tr>
 
                     <th scope="col">Mã Số Sinh Viên</th>
-                    <th scope="col">Họ Vàn Tên</th>
+                    <th scope="col">Họ Và Tên</th>
                     <th scope="col">Số điện thoại</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -55,11 +62,11 @@ include ("SinhVien_data.php");
                     <td><?=$sinhvien['HoVaTen']?></td>
                     <td><?=$sinhvien['SoDienThoai']?></td>
                     <td>
-                        <a href="category_detail.php?id=<?=$sinhvien['MaSinhVien']?>" type="button"
+                        <a href="SinhVien_detail.php?id=<?=$sinhvien['MaSinhVien']?>" type="button"
                             class="btn btn-default">Xem</a>
                         <a href="category_edit.php?id=<?=$sinhvien['MaSinhVien']?>" type="button"
                             class="btn btn-success">Sửa</a>
-                        <a href="category_delete.php?id=<?=$sinhvien['MaSinhVien']?>" type="button"
+                        <a href="SinhVien_delete.php?id=<?=$sinhvien['MaSinhVien']?>" type="button"
                             class="btn btn-warning">Xóa</a>
                     </td>
                 </tr>
