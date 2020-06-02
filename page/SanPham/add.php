@@ -1,35 +1,36 @@
 <?php
-session_start();  //Session có thể sử dụng sau khi chèn đoạn này
-ob_start();  //Sử dụng được hàm header();
 
-//echo $_POST['Ma'];
-    
-echo $_POST['Ma'];
-echo $_POST['Ten'];
-echo $_POST['Gia'];
+session_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+$products = array(
 
-if(isset($_POST['submit'])){
-    $id = $_POST['Ma'];
-    $tenhoa = $_POST['Ten'];
-    $soluong = 1;
-    $gia = $_POST['Gia'];
+         'SP01'=> array('SP01','iphone6',9000000,100,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+          'SP02'=> array('SP02','iphone7',10000000,90,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+           'SP03'=> array('SP03','iphone7+',9000000,32,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+          'SP04'=> array('SP04','iphone8',9000000,131,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+         'SP05'=> array('SP05','iphone8+',9000000,100,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+  );
 
-    
-    if(!isset($_SESSION['arMua'][$id])){
-    $_SESSION['arMua'][$id] = array(
-    'Ma' => $id,
-    'Ten' => $tenhoa,
-    'SoLuong' => $soluong,
-    'Gia' => $gia
-    );
+  // echo "<pre>";
+  //   print_r($products);
+  // echo "</pre>";
+  // var_dump($products)
+   if (isset($_GET['msp'])) {
+     $msp =$_GET['msp'];
 
     
-    }else{
-    $_SESSION['arMua'][$id]['soluong'] += $soluong;
-    }
-    //header('location:GioHang.php');
-    }
+     if (isset($_SESSION['products'][$msp])) {
+       $_SESSION['products'][$msp][3]++;
+     }else{
+         $products[$msp][3]=1; // số lương mua khi chưa có sp trong giỏ hàng =1
+          $_SESSION['products'][$msp]=$products[$msp];
+          $_SESSION['products'][$msp]['time']=date('d/m/y h:s:i');
+     }
+      echo "<pre>";
+        print_r($_SESSION);
+     echo "</pre>";
 
-    
-    ob_end_flush();
+
+   }
+   header('Location: GioHang.php')
 ?>

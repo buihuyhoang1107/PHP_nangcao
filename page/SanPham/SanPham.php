@@ -1,6 +1,16 @@
 <?php
 session_start();  //Session có thể sử dụng sau khi chèn đoạn này
 ob_start();  //Sử dụng được hàm header();
+	// session_destroy();
+  $products = array(
+
+                    'SP01'=> array('SP01','iphone6',9000000,100,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+                    'SP02'=> array('SP02','iphone7',10000000,90,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+                    'SP03'=> array('SP03','iphone7+',9000000,32,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+                    'SP04'=> array('SP04','iphone8',9000000,131,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+                    'SP05'=> array('SP05','iphone8+',9000000,100,'https://www.didongviet.vn/pub/media/catalog/product//i/p/iphone-6-plus-16gb-quoc-te-like-new-didongviet-1.jpg'),
+  );
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,33 +44,17 @@ ob_start();  //Sử dụng được hàm header();
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                foreach($products as $product => $row) {
+                ?>
                     <tr>
-                        <td><input type="text" name="Ma" value="SP1" readonly></td>
-                        <td><input type="text" name="Ten" value="Iphone 4 32GB" readonly></td>
-                        <td><input type="text" name="Gia" value="5.000.000" readonly></td>
-                        <!-- <td name=" submit"><a href="add.php?id=SP1">Add to cart</a></td> -->
-                        <td><input type="submit" name="submit" value="Add to cart"></input></td>
+                        <td><?=$row[0];?></td>
+                        <td><?=$row[1];?></td>
+                        <td><?=$row[2];?></td>
+                        <td><a href="add.php?msp=<?php echo $row[0] ?>" title=""><button type="button"
+                                    class="btn btn-primary">Add to card</button></a></td>
                     </tr>
-                    <tr>
-                        <td name="Ma">SP2</td>
-                        <td name="Ten">Ipad Mini 16GB</td>
-                        <td name="Gia">8.000.000</td>
-                        <td name="submit"><a href="#">Add to cart</a></td>
-                    </tr>
-
-                    <tr>
-                        <td name="Ma">SP3</td>
-                        <td name="Ten">Iphone 5S 32GB</td>
-                        <td name="Gia">7.000.000</td>
-                        <td name="submit"><a href="#">Add to cart</a></td>
-                    </tr>
-
-                    <tr>
-                        <td name="Ma">SP4</td>
-                        <td name="Ten">Iphone 6 32GB</td>
-                        <td>10.000.000</td>
-                        <td name="submit"><a href="#">Add to cart</a></td>
-                    </tr>
+                    <?php }?>
                 </tbody>
             </table>
 
